@@ -1,0 +1,52 @@
+<div ng-controller='dashboardController'>
+	<h4 ng-cloak>Welcome {{user.name}}</h4><br/>
+	<div class="form-group row">
+		<div class="col-xs-12 col-sm-3 col-sm-offset-9">
+			<input class='search-box form-control pull-right' type='text' ng-model='search' placeholder="Search...">
+		</div>
+	</div>
+	<table class='table table-bordered table-striped table-hover'>
+		<tr styl>
+			<th>Category</th>
+			<th>Topic</th>
+			<th>User Name</th>
+			<th>Posts</th>
+		</tr>
+		<tr ng-repeat="board in boards | filter:search | orderBy: '-date_created'">
+			<td ng-bind='board.category'></td>
+			<td><a ng-click='viewTopic(board._id)' ng-bind='board.topic'></a></td>
+			<td><a ng-click='viewUser(board.author.id)' ng-bind='board.author.name'></a></td>
+			<td ng-bind='board.posts.length'></td>
+		</tr>
+	</table>
+
+	<h4>Add a new Topic</h4><br/>
+	<form ng-submit='addBoard(newBoard)' class='row'>
+		<div class="col-sm-12 col-md-8 col-lg-6">
+
+			<div class="form-group">
+				<label>Topic</label>
+				<input class="form-control" type='text' ng-model='newBoard.topic' required>
+			</div>
+			<div class="form-group">
+				<label>Description:</label>
+				<textarea class="form-control" ng-model='newBoard.description' style='resize: none;' rows='3' required></textarea>
+			</div>
+			<div class="form-group">
+				<label>Category:</label>
+				<select class="form-control" ng-model='newBoard.category' required>
+					<option selected disabled value>-- Choose One --</option>
+					<option>HTML</option>
+					<option>CSS</option>
+					<option>Java Script</option>
+					<option>PHP</option>
+					<option>MySQL</option>
+					<option>Node</option>
+					<option>Mongoose</option>
+					<option>Swift</option>
+				</select>
+			</div>
+			<input type='submit' class='btn add btn-primary pull-right' value='Submit'>
+		</div>
+	</form>
+</div>
