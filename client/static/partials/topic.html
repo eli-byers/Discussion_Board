@@ -21,7 +21,7 @@
 				<p ng-bind='post.contents'></p>
 				<div class='row col-sm-11 col-sm-offset-1'>
 					<div ng-repeat='comment in post.comments'>
-						<h5><a ng-cloak ng-click='viewUser(comment.author.id)' ng-bind='comment.author.name'></a> {{comment.content}}</h5>
+						<h5><a ng-cloak ng-click='viewUser(comment.author.id)' ng-bind='comment.author.name'></a>: {{comment.content}}</h5>
 					</div>
 					<form>
 						<textarea class='form-control' rows="2" style='resize: none; margin-bottom: 10px;' ng-model='new_comment'></textarea>
